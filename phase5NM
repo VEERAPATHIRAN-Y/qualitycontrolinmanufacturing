@@ -1,0 +1,40 @@
+import random
+
+# Simulated sensor data and image analysis output
+def simulate_sensor_data():
+    return {
+        "temperature": round(random.uniform(20.0, 50.0), 2),  # °C
+        "vibration": round(random.uniform(0.1, 5.0), 2),      # mm/s
+        "pressure": round(random.uniform(1.0, 3.0), 2)         # Bar
+    }
+
+# AI model mock prediction based on image quality score
+def ai_defect_detection(image_quality_score):
+    # Simulate classification threshold
+    return "Fail" if image_quality_score < 0.85 else "Pass"
+
+# Integrated system check
+def quality_control_check(batch_size=10):
+    results = []
+    for product_id in range(1, batch_size + 1):
+        sensor_data = simulate_sensor_data()
+        image_quality_score = round(random.uniform(0.7, 1.0), 2)  # Simulated ML output
+        defect_result = ai_defect_detection(image_quality_score)
+
+        results.append({
+            "Product ID": product_id,
+            "Sensor Data": sensor_data,
+            "Image Quality Score": image_quality_score,
+            "QC Result": defect_result
+        })
+
+    return results
+
+# Run and display results
+results = quality_control_check()
+
+# Print output in a tabular way
+print(f"{'ID':<5}{'Temp(°C)':<12}{'Vib(mm/s)':<12}{'Pres(Bar)':<12}{'IQ Score':<10}{'Result'}")
+for item in results:
+    s = item["Sensor Data"]
+    print(f"{item['Product ID']:<5}{s['temperature']:<12}{s['vibration']:<12}{s['pressure']:<12}{item['Image Quality Score']:<10}{item['QC Result']}")
