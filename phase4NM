@@ -1,0 +1,28 @@
+import matplotlib.pyplot as plt
+
+# Sample product weights
+weights = [49, 50, 51, 52, 48, 50, 53, 47, 50, 49]
+
+# Calculate mean
+mean = sum(weights) / len(weights)
+
+# Define control limits
+UCL = mean + 2
+LCL = mean - 2
+
+# Create the plot
+plt.figure(figsize=(10, 5))
+plt.plot(weights, marker='o', label='Weights')
+
+# Add control lines
+plt.axhline(mean, color='green', linestyle='--', label='Mean')
+plt.axhline(UCL, color='red', linestyle='--', label='UCL')
+plt.axhline(LCL, color='red', linestyle='--', label='LCL')
+
+# Add chart labels
+plt.title('Simple Quality Control Chart')
+plt.xlabel('Sample Number')
+plt.ylabel('Weight')
+plt.legend()
+plt.grid(True)
+plt.show()
